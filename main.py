@@ -1,7 +1,7 @@
 max_case_x=50
 max_case_y=30
 total_pop=500
-taux_contamination=1/4
+propagation=1/4
 mortel=True
 max_turn=10
 confinement=False
@@ -9,6 +9,9 @@ confinement=False
 case_list = []
 pop_list = []
 turn_list=[]
+
+from case import Case
+import randomCasePicking
 
 def getCase(x, y):
     for i in case_list:
@@ -24,31 +27,38 @@ def getPop(x, y):
             if pop_location[1] == y:
                 return i
 
+def people_rarity():
+    return True
+
 import random
 def generate_terrain(x, y):
     for j in range(y+1):
         for i in range(x+1):
-            case=Case(i, j)
-            if random.randint(0, total_pop/(max_case_x*max_case_y)):
+            case=Case(False, i, j)
+            if people_rarity():
                 case.addPop()
                 pop_list.append(Pop(i, j))
             case_list.append(case)
 
-def get_color_case(pop):
-    if pop.isDead():
-        return "grey"
-    elif pop.isContaminated():
-        return "red"
+def get_color_case(case):
+    if case.hasPop():
+        pop = case.getPop()
+        if pop.isDead():
+            return "grey"
+        elif pop.isContaminated():
+            return "red"
+        else:
+            return "green"
     else:
-        return "green"
+        return "white"
 
-import turtle
+from turtle import Turtle as ttle
 def print_turn(x, y):
     turtle.pensize(1)
     for j in range(y+1):
         for i in range(x+1):
+            ttle.setx(i)
             turtle.right(1)
-            
 
 def start():
     generate_terrain(max_case_x, max_case_y)
@@ -56,7 +66,7 @@ def start():
         #contamination
         for i in case_list:
             if i.hasPop():
-                i.test_virus()
+                randomCasePicking.rVirusCasePicking(i.location, propagation)
         #déplacement
         for i in pop_list:
             i.move()

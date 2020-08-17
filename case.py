@@ -11,7 +11,7 @@ class Case():
 
     def addPop(self):
         self.has_pop = True
-    
+
     def removePop(self):
         self.has_pop = False
 
