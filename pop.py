@@ -13,16 +13,16 @@ class Pop():
 
     def addContaminatedTurn(self):
         contaminatedTurn+1
-    
-    def isContaminate(self):
+
+    def isContaminated(self):
         return self.isContaminate
 
     def isDead(self):
         return self.isDead
-    
+
     def contaminate(self):
         self.isContaminate = True
-        
+
     def deContaminate(self):
         self.isContaminate = False
 
