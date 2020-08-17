@@ -65,7 +65,7 @@ def start():
         #contamination
         for i in case_list:
             if i.hasPop():
-                i.test_virus()
+                i.
         #déplacement
         for i in pop_list:
             i.move()
