@@ -1,7 +1,7 @@
 max_case_x=50
 max_case_y=30
 total_pop=500
-taux_contamination=1/4
+propagation=1/4
 mortel=True
 max_turn=10
 confinement=False
@@ -11,6 +11,7 @@ pop_list = []
 turn_list=[]
 
 from case import Case
+import randomCasePicking
 
 def getCase(x, y):
     for i in case_list:
@@ -65,7 +66,7 @@ def start():
         #contamination
         for i in case_list:
             if i.hasPop():
-                i.
+                randomCasePicking.rVirusCasePicking(i.location, propagation)
         #déplacement
         for i in pop_list:
             i.move()
