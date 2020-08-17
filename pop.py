@@ -3,6 +3,10 @@ class Pop():
         self.location = [X, Y]
         self.isContaminate = False
         self.isDead = False
+        self.contaminatedTime = 0
+
+    def getContaminatedTime(self):
+        return self.contaminatedTime
     
     def isContaminate(self):
         return self.isContaminate
@@ -12,7 +16,7 @@ class Pop():
     
     def contaminate(self):
         self.isContaminate = True
-
+        
     def deContaminate(self):
         self.isContaminate = False
 

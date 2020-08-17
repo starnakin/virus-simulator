@@ -1,5 +1,6 @@
 import random
 import main
+import case
 
 
 def rPopCasePicking(caseLocation):
