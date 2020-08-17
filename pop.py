@@ -5,6 +5,9 @@ class Pop():
         self.isDead = False
         self.contaminatedTime = 0
 
+    def getLocation(self):
+        return self.location
+
     def getContaminatedTime(self):
         return self.contaminatedTime
     

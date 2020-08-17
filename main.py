@@ -11,6 +11,7 @@ pop_list = []
 turn_list=[]
 
 from case import Case
+from pop import Pop
 import randomCasePicking
 
 def getCase(x, y):
@@ -52,13 +53,15 @@ def get_color_case(case):
     else:
         return "white"
 
-from turtle import Turtle as ttle
+from turtle import Turtle
+ttle=Turtle()
 def print_turn(x, y):
-    turtle.pensize(1)
+    ttle.pensize(1)
     for j in range(y+1):
+        ttle.sety(j)
         for i in range(x+1):
+            ttle.color(get_color_case(case_list[x*y]))
             ttle.setx(i)
-            turtle.right(1)
 
 def start():
     generate_terrain(max_case_x, max_case_y)
@@ -69,7 +72,7 @@ def start():
                 randomCasePicking.rVirusCasePicking(i.location, propagation)
         #déplacement
         for i in pop_list:
-            i.move()
+            randomCasePicking.rPopCasePicking(i.getLocation())
         turn_list.append(case_list)
         turn_list.append(pop_list)
 
