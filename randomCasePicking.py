@@ -1,17 +1,17 @@
 import random
+import main
 
 
 def rPopCasePicking(caseLocation):
     rInt = random.randint(1, 4)
     if rInt == 1:
-        getCase(caseLocation[0], caseLocation[1]+1).addPop
-
-        elif rInt == 2:
-            getCase(caseLocation[0]+1, caseLocation[1]).addPop
-        elif rInt == 3:
-            getCase(caseLocation[0], caseLocation[1]-1).addPop
-        elif rInt == 4:
-            getCase(caseLocation[0]-1, caseLocation[1]).addPop
+        getCase(caseLocation[0], caseLocation[1]+1).addPop()
+    elif rInt == 2:
+        getCase(caseLocation[0]+1, caseLocation[1]).addPop()
+    elif rInt == 3:
+        getCase(caseLocation[0], caseLocation[1]-1).addPop()
+    elif rInt == 4:
+        getCase(caseLocation[0]-1, caseLocation[1]).addPop()
     getCase(caseLocation[0], caseLocation[1]).removePop
 
 def rVirusCasePicking(caseLocation, tPropagation):
