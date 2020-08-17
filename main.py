@@ -85,6 +85,8 @@ def start():
                             randomCasePicking.rPopCasePicking(i.getLocation)
                         else:
                             randomCasePicking.rPopCasePicking(i.getLocation)
+                else:
+                    randomCasePicking.rPopCasePicking(i.getLocation)
 
 if __name__ == "__main__":
     start()
