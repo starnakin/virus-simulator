@@ -6,7 +6,7 @@ tImmunity=10
 tDeath=20
 incubationTime=3
 mortel=True
-max_turn=10
+max_turn=1
 confinement=False
 
 case_list = []
@@ -15,17 +15,18 @@ turn_list=[]
 
 from case import Case
 from pop import Pop
+from turn import Turn
 import randomCasePicking
 
-def getCase(x, y):
-    for i in case_list:
+def getCase(x, y, tlist=case_list):
+    for i in tlist:
         case_location=i.getLocation()
         if case_location[0] == x:
             if case_location[1] == y:
                 return i
 
-def getPop(x, y):
-    for i in pop_list:
+def getPop(x, y, tlist=pop_list):
+    for i in tlist:
         pop_location=i.getLocation()
         if pop_location[0] == x:
             if pop_location[1] == y:
@@ -44,9 +45,9 @@ def generate_terrain(x, y):
                 pop_list.append(Pop(case.getLocation()[0], case.getLocation()[1]))
             case_list.append(case)
 
-def get_color_case(case):
+def get_color_case(case, turn):
     if case.hasPop():
-        pop = getPop(case.getLocation[0], case.getLocation[1])
+        pop = getPop(case.getLocation()[0], case.getLocation()[1], tlist=turn.get_pops())
         if pop.isDead():
             return "grey"
         elif pop.isContaminated():
@@ -56,19 +57,23 @@ def get_color_case(case):
     else:
         return "white"
 
-from turtle import Turtle as ttle
+from turtle import Screen, Turtle, mainloop
+
 def print_turn(x, y):
-    ttle.pensize(1)
-    for j in range(y+1):
-        ttle.sety(j)
-        for i in range(x+1):
-            ttle.setx(i)
-            turtle.right(1)
+    screen = Screen()
+    screen.bgcolor('white')
+    ttle = Turtle()
+    ttle.speed("fastest")
+    ttle.pensize(3)
+    for t in turn_list:
+        ttle.goto(0,0)
+        for j in range(y+1):
+            ttle.sety(j)
+            for i in range(x+1):
+                ttle.setx(i*3)
+                ttle.color(get_color_case(getCase(i, j, tlist=t.get_cases()), t))
+        #ttle.clear()
 
-
-import case
-import randomCasePicking
-import pop
 def start():
     generate_terrain(max_case_x, max_case_y)
     for current_turn in range(max_turn):
@@ -87,10 +92,16 @@ def start():
                             randomCasePicking.rPopCasePicking(i.getLocation)
                         else:
                             randomCasePicking.rPopCasePicking(i.getLocation)
+<<<<<<< HEAD
                 else:
                     randomCasePicking.rPopCasePicking(i.getLocation)
+=======
+        turn_list.append(Turn(case_list, pop_list))
+>>>>>>> dev
 
 if __name__ == "__main__":
+    print()
     start()
     print("started")
     print_turn(max_case_x, max_case_y)
+    mainloop()

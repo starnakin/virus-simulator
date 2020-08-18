@@ -2,7 +2,7 @@ class Pop():
     def __init__(self, X, Y):
         self.location = [X, Y]
         self.isContaminate = False
-        self.isDead = False
+        self.dead = False
         self.contaminatedTurn = 0
 
     def getLocation(self):
@@ -18,7 +18,7 @@ class Pop():
         return self.isContaminate
 
     def isDead(self):
-        return self.isDead
+        return self.dead
 
     def contaminate(self):
         self.isContaminate = True

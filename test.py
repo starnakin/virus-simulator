@@ -1,4 +1,3 @@
-import random
+from turtle import Screen, Turtle, mainloop
 
-for i in range(10):
-    print(random.getrandbits(2))
+screen = Screen()
